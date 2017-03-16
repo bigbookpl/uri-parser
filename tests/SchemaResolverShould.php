@@ -2,6 +2,9 @@
 
 namespace Bigbookpl\UriParser;
 
+use Bigbookpl\UriParser\Validators\Email;
+use Bigbookpl\UriParser\Validators\Http;
+use Bigbookpl\UriParser\Validators\Validator;
 use PHPUnit\Framework\TestCase;
 
 class SchemaResolverShould extends TestCase
@@ -9,39 +12,44 @@ class SchemaResolverShould extends TestCase
     /**
      * @test
      */
-    public function returnSchemaNameForHTTP(): void
+    public function returnValidatorForHTTP(): void
     {
         //given
         $uri = "http://www.onet.pl";
         $cut = new SchemaResolver($uri);
 
+        $cut->addValidator(new Http());
+
         //when
-        $result = $cut->getSchema();
+        $result = $cut->resolveValidator();
 
         //then
-        $this->assertEquals('http', $result);
+        $this->assertInstanceOf(Http::class, $result);
     }
 
     /**
      * @test
      */
-    public function returnSchemaNameForEMAIL(): void
+    public function returnValidatorForEMAIL(): void
     {
         //given
-        $uri = "email:webmaster@test.test";
+        $uri = "mail:mikael@blomkvist.se";
         $cut = new SchemaResolver($uri);
 
+        $cut->addValidator(new Email());
+        $cut->addValidator(new Http());
+
         //when
-        $result = $cut->getSchema();
+        $result = $cut->resolveValidator();
 
         //then
-        $this->assertEquals('email', $result);
+        $this->assertInstanceOf(Email::class, $result);
     }
 
     /**
      * @test
      */
-    public function throwExceptionWhenSchemaDoestExists(): void
+    public function throwExceptionWhenSchemaDoNoPassed(): void
     {
         //expect
         $this->expectException(\Exception::class);
@@ -51,7 +59,7 @@ class SchemaResolverShould extends TestCase
         $cut = new SchemaResolver($uri);
 
         //when
-        $cut->getSchema();
+        $cut->resolveValidator();
     }
 
     /**
@@ -67,7 +75,7 @@ class SchemaResolverShould extends TestCase
         $cut = new SchemaResolver($uri);
 
         //when
-        $cut->getSchema();
+        $cut->resolveValidator();
     }
 
     /**
@@ -83,6 +91,6 @@ class SchemaResolverShould extends TestCase
         $cut = new SchemaResolver($uri);
 
         //when
-        $cut->getSchema();
+        $cut->resolveValidator();
     }
 }

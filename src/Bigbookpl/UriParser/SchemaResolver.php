@@ -3,9 +3,13 @@
 namespace Bigbookpl\UriParser;
 
 
+use Bigbookpl\UriParser\Validators\Email;
+use Bigbookpl\UriParser\Validators\Validator;
+
 class SchemaResolver
 {
     private $uri;
+    private $validators;
 
     /**
      * SchemaResolver constructor.
@@ -14,8 +18,28 @@ class SchemaResolver
     public function __construct($uri)
     {
         $this->uri = $uri;
+    }
 
-        $this->loadValidators();
+    /**
+     * @param Validator $validator
+     */
+    public function addValidator(Validator $validator)
+    {
+        $this->validators[$validator->getSchema()] = $validator;
+    }
+
+    /**
+     * @return Validator
+     */
+    public function resolveValidator(): Validator
+    {
+        $schemaName = $this->getSchemaName($this->uri);
+
+        if (array_key_exists($schemaName)){
+            return $this->validators[$schemaName];
+        } else {
+//            return new DefaultSchema();
+        }
     }
 
     /**
@@ -24,18 +48,13 @@ class SchemaResolver
      * @return string schema
      * @throws \Exception
      */
-    public function getSchema()
+    private function getSchemaName($uri)
     {
-        if (0 == preg_match('/^([[:alpha:]]+[[:alnum:]\+-\.]*):(\/{1,2})?/',$this->uri, $matches)){
+        if (0 == preg_match('/^([[:alpha:]]+[[:alnum:]\+-\.]*):(\/{1,2})?/', $uri, $matches)) {
             throw new \Exception("Schema not found");
-        }
-        else{
+        } else {
             return $matches[1];
         }
-    }
-
-    private function loadValidators()
-    {
     }
 
 }
