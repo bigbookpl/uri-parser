@@ -5,7 +5,11 @@
     "require": {
     },
     "require-dev":{
-        "phpunit/phpunit": "^6.0"
+        "phpunit/phpunit": "^6.0",
+        "phpmd/phpmd" : "@stable"
+    },
+    "autoload": {
+        "psr-4": { "": ["src/", "test/"] }
     },
     "authors": [
         {
