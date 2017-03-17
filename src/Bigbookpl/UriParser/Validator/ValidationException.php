@@ -1,5 +1,5 @@
 <?php
-namespace Bigbookpl\UriParser\Validators;
+namespace Bigbookpl\UriParser\Validator;
 
 use Exception;
 

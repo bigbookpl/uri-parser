@@ -1,10 +1,10 @@
 <?php
-namespace Bigbookpl\UriParser\Validators;
+namespace Bigbookpl\UriParser\Validator;
 
 class Email implements Validator
 {
     //todo: add mailto schema maybe?
-    const SCHEMA = 'mail';
+    const SCHEME = 'mail';
 
     private $uri;
 
@@ -29,9 +29,9 @@ class Email implements Validator
         }
     }
 
-    public function getSchema(): string
+    public function getScheme(): string
     {
-        return self::SCHEMA;
+        return self::SCHEME;
     }
 
     public function setUri($uri)

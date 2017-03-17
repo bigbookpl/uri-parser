@@ -1,14 +1,14 @@
 <?php
 
-namespace Bigbookpl\UriParser\Validators;
+namespace Bigbookpl\UriParser\Validator;
 
 
-class Urn implements Validator
+class URN implements Validator
 {
 
     private $uri;
 
-    const SCHEMA = 'urn';
+    const SCHEME = 'urn';
 
     public function __construct()
     {
@@ -25,9 +25,9 @@ class Urn implements Validator
         }
     }
 
-    public function getSchema(): string
+    public function getScheme(): string
     {
-        return self::SCHEMA;
+        return self::SCHEME;
     }
 
     public function setUri($uri)

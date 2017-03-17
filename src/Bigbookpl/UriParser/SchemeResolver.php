@@ -2,17 +2,16 @@
 
 namespace Bigbookpl\UriParser;
 
+use Bigbookpl\UriParser\Validator\Email;
+use Bigbookpl\UriParser\Validator\Validator;
 
-use Bigbookpl\UriParser\Validators\Email;
-use Bigbookpl\UriParser\Validators\Validator;
-
-class SchemaResolver
+class SchemeResolver
 {
     private $uri;
     private $validators;
 
     /**
-     * SchemaResolver constructor.
+     * SchemeResolver constructor.
      * @param string $uri
      */
     public function __construct($uri)
@@ -25,7 +24,7 @@ class SchemaResolver
      */
     public function addValidator(Validator $validator)
     {
-        $this->validators[$validator->getSchema()] = $validator;
+        $this->validators[$validator->getScheme()] = $validator;
     }
 
     /**
@@ -33,25 +32,25 @@ class SchemaResolver
      */
     public function resolveValidator(): Validator
     {
-        $schemaName = $this->getSchemaName($this->uri);
+        $schemeName = $this->getSchemeName($this->uri);
 
-        if (array_key_exists($schemaName,$this->validators)){
-            return $this->validators[$schemaName];
+        if (array_key_exists($schemeName,$this->validators)){
+            return $this->validators[$schemeName];
         } else {
             return null;
         }
     }
 
     /**
-     * Return schema
+     * Return scheme
      *
      * @return string schema
      * @throws \Exception
      */
-    private function getSchemaName($uri)
+    private function getSchemeName($uri)
     {
         if (0 == preg_match('/^([[:alpha:]]+[[:alnum:]\+-\.]*):(\/{1,2})?/', $uri, $matches)) {
-            throw new \DomainException("Schema not found");
+            throw new \DomainException("Scheme not found");
         } else {
             return $matches[1];
         }

@@ -1,16 +1,16 @@
 <?php
-namespace Validators;
+namespace Bigbookpl\UriParser\Validator;
 
-use Bigbookpl\UriParser\Validators\Email;
-use Bigbookpl\UriParser\Validators\ValidationException;
+use Bigbookpl\UriParser\Validator\Email;
+use Bigbookpl\UriParser\Validator\ValidationException;
 use PHPUnit\Framework\TestCase;
 
-class EmailValidatorShould extends TestCase
+class EmailShould extends TestCase
 {
     /**
      * @test
      */
-    public function returnTrueIfEmailIsValid()
+    public function returnTrueIfEmailValid()
     {
         //given
         $cut = new Email();
@@ -26,7 +26,7 @@ class EmailValidatorShould extends TestCase
     /**
      * @test
      */
-    public function throwExceptionWhenEmailIsInvalid()
+    public function throwExceptionWhenEmailInvalid()
     {
         //expect
         $this->expectException(ValidationException::class);
