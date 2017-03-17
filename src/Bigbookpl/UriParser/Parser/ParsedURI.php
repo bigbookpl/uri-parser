@@ -12,7 +12,7 @@ class ParsedURI
 
     public function getScheme(): string
     {
-        return $this->scheme;
+        return $this->scheme ?? self::EMPTY_STRING;
     }
 
     /**
@@ -28,9 +28,9 @@ class ParsedURI
     /**
      * @return string
      */
-    public function getPath(): ?string
+    public function getPath(): string
     {
-        return $this->path;
+        return $this->path ?? self::EMPTY_STRING;
     }
 
     /**
