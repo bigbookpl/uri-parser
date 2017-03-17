@@ -35,10 +35,10 @@ class SchemaResolver
     {
         $schemaName = $this->getSchemaName($this->uri);
 
-        if (array_key_exists($schemaName)){
+        if (array_key_exists($schemaName,$this->validators)){
             return $this->validators[$schemaName];
         } else {
-//            return new DefaultSchema();
+            return null;
         }
     }
 
@@ -51,7 +51,7 @@ class SchemaResolver
     private function getSchemaName($uri)
     {
         if (0 == preg_match('/^([[:alpha:]]+[[:alnum:]\+-\.]*):(\/{1,2})?/', $uri, $matches)) {
-            throw new \Exception("Schema not found");
+            throw new \DomainException("Schema not found");
         } else {
             return $matches[1];
         }

@@ -1,26 +1,22 @@
 <?php
+
 namespace Bigbookpl\UriParser\Validators;
 
-class Email implements Validator
+
+class Urn implements Validator
 {
-    //todo: add mailto schema maybe?
-    const SCHEMA = 'mail';
 
     private $uri;
+
+    const SCHEMA = 'urn';
 
     public function __construct()
     {
     }
 
-    /**
-     * todo: extend validation
-     *
-     * @return bool
-     * @throws ValidationException
-     */
     public function validate(): bool
     {
-        if (preg_match('/^mail:([\w-\.]+)@([\w-\.]+\.[a-z]{2,})/',$this->uri)){
+        if (preg_match('/^urn:(([[:alnum:]][[:alnum:]-]{1,31}):([[:alnum:]()+,-.:=@%;$_!*\']+))/',$this->uri)){
             return true;
         }
         else

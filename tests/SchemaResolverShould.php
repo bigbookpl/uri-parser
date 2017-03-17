@@ -4,7 +4,6 @@ namespace Bigbookpl\UriParser;
 
 use Bigbookpl\UriParser\Validators\Email;
 use Bigbookpl\UriParser\Validators\Http;
-use Bigbookpl\UriParser\Validators\Validator;
 use PHPUnit\Framework\TestCase;
 
 class SchemaResolverShould extends TestCase
@@ -12,10 +11,10 @@ class SchemaResolverShould extends TestCase
     /**
      * @test
      */
-    public function returnValidatorForHTTP(): void
+    public function returnValidatorForHTTP()
     {
         //given
-        $uri = "http://www.onet.pl";
+        $uri = 'http://www.goodreads.com/book/show/7822895-the-millennium-trilogy';
         $cut = new SchemaResolver($uri);
 
         $cut->addValidator(new Http());
@@ -30,10 +29,10 @@ class SchemaResolverShould extends TestCase
     /**
      * @test
      */
-    public function returnValidatorForEMAIL(): void
+    public function returnValidatorForEMAIL()
     {
         //given
-        $uri = "mail:mikael@blomkvist.se";
+        $uri = 'mail:mikael@blomkvist.se';
         $cut = new SchemaResolver($uri);
 
         $cut->addValidator(new Email());
@@ -49,13 +48,13 @@ class SchemaResolverShould extends TestCase
     /**
      * @test
      */
-    public function throwExceptionWhenSchemaDoNoPassed(): void
+    public function throwExceptionWhenSchemaDoNoPassed()
     {
         //expect
         $this->expectException(\Exception::class);
 
         //given
-        $uri = "webmaster@test.test";
+        $uri = 'mikael@blomkvist.se';
         $cut = new SchemaResolver($uri);
 
         //when
@@ -65,13 +64,13 @@ class SchemaResolverShould extends TestCase
     /**
      * @test
      */
-    public function throwExceptionWhenSchemaIsInvalid(): void
+    public function throwExceptionWhenSchemaIsInvalid()
     {
         //expect
         $this->expectException(\Exception::class);
 
         //given
-        $uri = "&://webmaster@test.test";
+        $uri = '&://mikael@blomkvist.se';
         $cut = new SchemaResolver($uri);
 
         //when
@@ -81,13 +80,13 @@ class SchemaResolverShould extends TestCase
     /**
      * @test
      */
-    public function throwExceptionWhenPortCouldBeRecognizedAsSchema(): void
+    public function throwExceptionWhenPortCouldBeRecognizedAsSchema()
     {
         //expect
         $this->expectException(\Exception::class);
 
         //given
-        $uri = "webmaster@test.test:21/helloword";
+        $uri = 'mikael@blomkvist.se:21/Miriam';
         $cut = new SchemaResolver($uri);
 
         //when
