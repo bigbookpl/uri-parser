@@ -2,6 +2,7 @@
 
 namespace Bigbookpl\UriParser;
 
+use Bigbookpl\UriParser\Parser\Strategy\Generic;
 use Bigbookpl\UriParser\Validator\Email;
 use Bigbookpl\UriParser\Validator\Strategy\Validator;
 
@@ -22,7 +23,7 @@ class SchemeResolver
     /**
      * @param Validator $validator
      */
-    public function addValidator(Validator $validator)
+    public function addCustomValidator(Validator $validator)
     {
         $this->validators[$validator->getScheme()] = $validator;
     }
@@ -39,6 +40,20 @@ class SchemeResolver
         } else {
             return null;
         }
+    }
+
+    /**
+     * @return Validator
+     */
+    public function resolveParser(): Validator
+    {
+    }
+
+    private function getGenericParser(){
+        return new Generic();
+    }
+
+    private function getGenericValidator(){
     }
 
     /**

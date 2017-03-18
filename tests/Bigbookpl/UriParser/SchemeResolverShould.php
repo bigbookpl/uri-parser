@@ -35,7 +35,7 @@ class SchemeResolverShould extends TestCase
         $uri = 'mail:mikael@blomkvist.se';
         $cut = new SchemeResolver($uri);
 
-        $cut->addValidator(new Email());
+        $cut->addCustomValidator(new Email());
 
         //when
         $result = $cut->resolveValidator();

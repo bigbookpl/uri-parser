@@ -5,8 +5,12 @@ namespace Bigbookpl\UriParser\Parser;
 class ParsedURI
 {
     private $scheme;
-    private $path;
+    private $userInformation;
+    private $host;
     private $port;
+    private $path;
+    private $query;
+    private $fragment;
 
     const EMPTY_STRING = '';
 
@@ -16,7 +20,7 @@ class ParsedURI
     }
 
     /**
-     * @param mixed $scheme
+     * @param string $scheme
      * @return ParsedURI
      */
     public function setScheme($scheme)
@@ -34,7 +38,7 @@ class ParsedURI
     }
 
     /**
-     * @param mixed $path
+     * @param string $path
      * @return ParsedURI
      */
     public function setPath($path)
@@ -44,7 +48,7 @@ class ParsedURI
     }
 
     /**
-     * @param mixed $port
+     * @param string $port
      * @return ParsedURI
      */
     public function setPort($port)
@@ -54,12 +58,83 @@ class ParsedURI
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getPort(): string
     {
         return $this->port ?? self::EMPTY_STRING;
     }
 
+    /**
+     * @return string
+     */
+    public function getUserInformation(): string
+    {
+        return $this->userInformation;
+    }
+
+    /**
+     * @param string $userInformation
+     * @return ParsedURI
+     */
+    public function setUserInformation($userInformation)
+    {
+        $this->userInformation = $userInformation;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getHost(): string
+    {
+        return $this->host;
+    }
+
+    /**
+     * @param string $host
+     * @return ParsedURI
+     */
+    public function setHost($host)
+    {
+        $this->host = $host;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getQuery(): string
+    {
+        return $this->query;
+    }
+
+    /**
+     * @param string $query
+     * @return ParsedURI
+     */
+    public function setQuery($query)
+    {
+        $this->query = $query;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFragment(): string
+    {
+        return $this->fragment;
+    }
+
+    /**
+     * @param string $fragment
+     * @return ParsedURI
+     */
+    public function setFragment($fragment)
+    {
+        $this->fragment = $fragment;
+        return $this;
+    }
 
 }

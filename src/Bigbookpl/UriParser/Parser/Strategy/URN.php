@@ -11,7 +11,7 @@ class URN implements Parser
     public function getParsed(): ParsedURI
     {
         $matches = array();
-        if (!$this->parseURN($matches))
+        if (!$this->parse($matches))
         {
             throw new ParserException();
         }
@@ -28,7 +28,7 @@ class URN implements Parser
      * @param $matches
      * @return int
      */
-    protected function parseURN(&$matches): int
+    private function parse(&$matches): int
     {
         return preg_match('/^(?\'scheme\'urn):(?\'path\'(?:[[:alnum:]][[:alnum:]-]{1,31}):(?:[[:alnum:]()+,-.:=@%;$_!*\']+))/', $this->uri, $matches);
     }
