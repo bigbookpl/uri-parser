@@ -1,7 +1,6 @@
 <?php
-namespace Bigbookpl\UriParser\Validator;
+namespace Bigbookpl\UriParser\Validator\Strategy;
 
-use Bigbookpl\UriParser\Validator\URN;
 use Bigbookpl\UriParser\Validator\ValidationException;
 use PHPUnit\Framework\TestCase;
 

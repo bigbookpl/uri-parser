@@ -1,7 +1,9 @@
 <?php
 
-namespace Bigbookpl\UriParser\Validator;
+namespace Bigbookpl\UriParser\Validator\Strategy;
 
+
+use Bigbookpl\UriParser\Validator\ValidationException;
 
 class URN implements Validator
 {

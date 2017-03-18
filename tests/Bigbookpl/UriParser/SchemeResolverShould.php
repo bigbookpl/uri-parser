@@ -2,8 +2,8 @@
 
 namespace Bigbookpl\UriParser;
 
-use Bigbookpl\UriParser\Validator\Email;
 use Bigbookpl\UriParser\Validator\Http;
+use Bigbookpl\UriParser\Validator\Strategy\Email;
 use PHPUnit\Framework\TestCase;
 
 class SchemeResolverShould extends TestCase

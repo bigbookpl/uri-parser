@@ -1,5 +1,7 @@
 <?php
-namespace Bigbookpl\UriParser\Parser;
+namespace Bigbookpl\UriParser\Parser\Strategy;
+
+use Bigbookpl\UriParser\Parser\ParsedURI;
 
 interface Parser
 {

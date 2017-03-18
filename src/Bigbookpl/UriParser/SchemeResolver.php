@@ -3,7 +3,7 @@
 namespace Bigbookpl\UriParser;
 
 use Bigbookpl\UriParser\Validator\Email;
-use Bigbookpl\UriParser\Validator\Validator;
+use Bigbookpl\UriParser\Validator\Strategy\Validator;
 
 class SchemeResolver
 {

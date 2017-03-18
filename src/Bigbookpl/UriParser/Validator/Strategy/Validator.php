@@ -1,5 +1,5 @@
 <?php
-namespace Bigbookpl\UriParser\Validator;
+namespace Bigbookpl\UriParser\Validator\Strategy;
 
 
 interface Validator

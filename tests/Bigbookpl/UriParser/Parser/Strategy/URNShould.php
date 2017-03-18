@@ -1,6 +1,7 @@
 <?php
-namespace Bigbookpl\UriParser\Parser;
+namespace Bigbookpl\UriParser\Parser\Strategy;
 
+use Bigbookpl\UriParser\Parser\ParserException;
 use PHPUnit\Framework\TestCase;
 
 class URNShould extends TestCase

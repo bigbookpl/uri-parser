@@ -1,9 +1,11 @@
 <?php
-namespace Bigbookpl\UriParser\Parser;
+namespace Bigbookpl\UriParser\Parser\Strategy;
+
+use Bigbookpl\UriParser\Parser\ParsedURI;
+use Bigbookpl\UriParser\Parser\ParserException;
 
 class URN implements Parser
 {
-
     private $uri;
 
     public function getParsed(): ParsedURI
