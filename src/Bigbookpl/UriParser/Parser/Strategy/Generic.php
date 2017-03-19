@@ -28,19 +28,11 @@ REGEX;
         return $this->getParsedURI($matches);
     }
 
-    /**
-     * @param $matches array
-     * @return int
-     */
     private function parse(&$matches): int
     {
         return preg_match($this->pattern, $this->uri, $matches);
     }
 
-    /**
-     * @param $matches array
-     * @return ParsedURI
-     */
     private function getParsedURI($matches): ParsedURI
     {
         $parsed = new ParsedURI();
