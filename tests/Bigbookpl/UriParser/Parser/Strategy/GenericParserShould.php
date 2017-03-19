@@ -48,6 +48,20 @@ class GenericParserShould extends TestCase
     }
 
     /**
+     * @test
+     */
+    public function returnNullAsScheme(){
+        //given
+        $cut = new GenericParser();
+
+        //when
+        $scheme = $cut->getScheme();
+
+        //then
+        $this->assertNull($scheme);
+    }
+
+    /**
      * Invalid URI data provider
      *
      * @return array

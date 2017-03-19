@@ -5,9 +5,10 @@ namespace Bigbookpl\UriParser;
 use Bigbookpl\UriParser\Validator\Http;
 use Bigbookpl\UriParser\Validator\Strategy\EmailValidator;
 use Bigbookpl\UriParser\Validator\Strategy\GenericValidator;
+use Bigbookpl\UriParser\Validator\Strategy\URNValidator;
 use PHPUnit\Framework\TestCase;
 
-class SchemeResolverShould extends TestCase
+class SchemeResolver_getValidatorShould extends TestCase
 {
     /**
      * @test
@@ -37,6 +38,7 @@ class SchemeResolverShould extends TestCase
         $cut = new SchemeResolver($uri);
 
         $cut->addCustomValidator(new EmailValidator());
+        $cut->addCustomValidator(new URNValidator());
 
         //when
         $result = $cut->getValidator();
