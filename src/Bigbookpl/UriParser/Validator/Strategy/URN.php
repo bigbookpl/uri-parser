@@ -2,38 +2,15 @@
 
 namespace Bigbookpl\UriParser\Validator\Strategy;
 
-
-use Bigbookpl\UriParser\Validator\ValidationException;
-
-class URN implements Validator
+class URN extends AbstractValidator
 {
-
-    private $uri;
-
-    const SCHEME = 'urn';
-
     public function __construct()
     {
+        $this->scheme = 'urn';
     }
 
-    public function validate(): bool
+    protected function getPattern(): string
     {
-        if (preg_match('/^urn:(([[:alnum:]][[:alnum:]-]{1,31}):([[:alnum:]()+,-.:=@%;$_!*\']+))/',$this->uri)){
-            return true;
-        }
-        else
-        {
-            throw new ValidationException();
-        }
-    }
-
-    public function getScheme(): string
-    {
-        return self::SCHEME;
-    }
-
-    public function setUri($uri)
-    {
-        $this->uri = $uri;
+        return '/^urn:(([[:alnum:]][[:alnum:]-]{1,31}):([[:alnum:]()+,-.:=@%;$_!*\']+))/';
     }
 }
