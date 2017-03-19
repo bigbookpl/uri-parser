@@ -2,10 +2,10 @@
 namespace Bigbookpl\UriParser\Parser\Strategy;
 
 use Bigbookpl\UriParser\Parser\ParsedURI;
-use Bigbookpl\UriParser\Parser\ParserException;
 
-class URN extends AbstractParser
+class URNParser extends AbstractParser
 {
+    private $scheme = "urn";
 
     protected function getParsedURI($matches): ParsedURI
     {
@@ -19,5 +19,10 @@ class URN extends AbstractParser
     protected function getPattern(): string
     {
         return '/^(?\'scheme\'urn):(?\'path\'(?:[[:alnum:]][[:alnum:]-]{1,31}):(?:[[:alnum:]()+,-.:=@%;$_!*\']+))/';
+    }
+
+    public function getScheme()
+    {
+        return $this->scheme;
     }
 }

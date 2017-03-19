@@ -3,28 +3,29 @@
 namespace Bigbookpl\UriParser;
 
 use Bigbookpl\UriParser\Validator\Http;
-use Bigbookpl\UriParser\Validator\Strategy\Email;
+use Bigbookpl\UriParser\Validator\Strategy\EmailValidator;
+use Bigbookpl\UriParser\Validator\Strategy\GenericValidator;
 use PHPUnit\Framework\TestCase;
 
 class SchemeResolverShould extends TestCase
 {
-//    /**
-//     * @test
-//     */
-//    public function returnValidatorForHTTP()
-//    {
-//        //given
-//        $uri = 'http://www.goodreads.com/book/show/7822895-the-millennium-trilogy';
-//        $cut = new SchemaResolver($uri);
-//
-//        $cut->addValidator(new Http());
-//
-//        //when
-//        $result = $cut->resolveValidator();
-//
-//        //then
-//        $this->assertInstanceOf(Http::class, $result);
-//    }
+    /**
+     * @test
+     */
+    public function returnValidatorForHTTP()
+    {
+        //given
+        $uri = 'http://www.goodreads.com/book/show/7822895-the-millennium-trilogy';
+        $cut = new SchemeResolver($uri);
+
+        $cut->addCustomValidator(new EmailValidator());
+
+        //when
+        $result = $cut->getValidator();
+
+        //then
+        $this->assertInstanceOf(GenericValidator::class, $result);
+    }
 
     /**
      * @test
@@ -35,13 +36,13 @@ class SchemeResolverShould extends TestCase
         $uri = 'mailto:mikael@blomkvist.se';
         $cut = new SchemeResolver($uri);
 
-        $cut->addCustomValidator(new Email());
+        $cut->addCustomValidator(new EmailValidator());
 
         //when
-        $result = $cut->resolveValidator();
+        $result = $cut->getValidator();
 
         //then
-        $this->assertInstanceOf(Email::class, $result);
+        $this->assertInstanceOf(EmailValidator::class, $result);
     }
 
     /**
@@ -57,7 +58,7 @@ class SchemeResolverShould extends TestCase
         $cut = new SchemeResolver($uri);
 
         //when
-        $cut->resolveValidator();
+        $cut->getValidator();
     }
 
     /**
@@ -73,7 +74,7 @@ class SchemeResolverShould extends TestCase
         $cut = new SchemeResolver($uri);
 
         //when
-        $cut->resolveValidator();
+        $cut->getValidator();
     }
 
     /**
@@ -89,6 +90,6 @@ class SchemeResolverShould extends TestCase
         $cut = new SchemeResolver($uri);
 
         //when
-        $cut->resolveValidator();
+        $cut->getValidator();
     }
 }

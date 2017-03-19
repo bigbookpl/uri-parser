@@ -8,4 +8,6 @@ interface Parser
     public function setUri(string $uri): void;
 
     public function getParsed(): ParsedURI;
+
+    public function getScheme();
 }

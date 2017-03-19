@@ -4,7 +4,7 @@ namespace Bigbookpl\UriParser\Validator\Strategy;
 use Bigbookpl\UriParser\Validator\ValidationException;
 use PHPUnit\Framework\TestCase;
 
-class EmailShould extends TestCase
+class EmailValidatorShould extends TestCase
 {
     /**
      * @test
@@ -12,7 +12,7 @@ class EmailShould extends TestCase
     public function returnTrueIfEmailValid()
     {
         //given
-        $cut = new Email();
+        $cut = new EmailValidator();
         $cut->setUri('mailto:harriet@vanger.company.se');
 
         //when
@@ -31,7 +31,7 @@ class EmailShould extends TestCase
         $this->expectException(ValidationException::class);
 
         //given
-        $cut = new Email();
+        $cut = new EmailValidator();
         $cut->setUri('mailto:harriet@vange');
 
         //when

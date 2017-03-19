@@ -9,14 +9,14 @@ abstract class AbstractValidator implements Validator
     protected $uri;
     protected $scheme;
 
+    public function setUri($uri): void
+    {
+        $this->uri = $uri;
+    }
+
     public function getScheme(): string
     {
         return $this->scheme;
-    }
-
-    public function setUri($uri)
-    {
-        $this->uri = $uri;
     }
 
     public function validate(): bool

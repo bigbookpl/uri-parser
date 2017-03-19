@@ -2,7 +2,7 @@
 
 namespace Bigbookpl\UriParser\Validator\Strategy;
 
-class URN extends AbstractValidator
+class URNValidator extends AbstractValidator
 {
     public function __construct()
     {

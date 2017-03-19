@@ -1,7 +1,7 @@
 <?php
 namespace Bigbookpl\UriParser\Validator\Strategy;
 
-class Email extends AbstractValidator
+class EmailValidator extends AbstractValidator
 {
     public function __construct()
     {

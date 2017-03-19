@@ -1,7 +1,7 @@
 <?php
 namespace Bigbookpl\UriParser\Validator\Strategy;
 
-class Generic extends AbstractValidator
+class GenericValidator extends AbstractValidator
 {
     protected function getPattern(): string
     {

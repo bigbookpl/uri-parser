@@ -3,7 +3,7 @@ namespace Bigbookpl\UriParser\Parser\Strategy;
 
 use Bigbookpl\UriParser\Parser\ParsedURI;
 
-class Generic extends AbstractParser
+class GenericParser extends AbstractParser
 {
     protected function getParsedURI($matches): ParsedURI
     {
@@ -24,5 +24,10 @@ class Generic extends AbstractParser
         return <<<REGEX
 /^(?'scheme'[[:alpha:]]+[[:alnum:]\+-\.]*?):(?:(\/{2})?(?:((?'userinfo'[a-z]+:?[a-z]+)@))?(?'host'[a-z.-]+)(?:(:(?'port'[0-9]{1,5})))?)?(?:(?'path'\/[\/\w.-]*))?(?:(\?(?'query'[=&\w]*)))?(?:(#(?'fragment'.+)))?$/
 REGEX;
+    }
+
+    public function getScheme()
+    {
+        return null;
     }
 }

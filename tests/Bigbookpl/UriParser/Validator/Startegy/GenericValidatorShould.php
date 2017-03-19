@@ -4,7 +4,7 @@ namespace Bigbookpl\UriParser\Validator\Strategy;
 use Bigbookpl\UriParser\Validator\ValidationException;
 use PHPUnit\Framework\TestCase;
 
-class GenericShould extends TestCase
+class GenericValidatorShould extends TestCase
 {
     /**
      * @test
@@ -12,7 +12,7 @@ class GenericShould extends TestCase
     public function returnTrueIfHTTPUrlValid()
     {
         //given
-        $cut = new Generic();
+        $cut = new GenericValidator();
         $cut->setUri('http://www.wennerstrom.se/?search=HansErik#top');
 
         //when
@@ -31,7 +31,7 @@ class GenericShould extends TestCase
         $this->expectException(ValidationException::class);
 
         //given
-        $cut = new Generic();
+        $cut = new GenericValidator();
         $cut->setUri('ftp://heeee\\@#top:10');
 
         //when

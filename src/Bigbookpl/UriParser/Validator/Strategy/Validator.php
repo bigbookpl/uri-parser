@@ -6,5 +6,5 @@ interface Validator
 {
     public function validate(): bool;
     public function getScheme(): string;
-    public function setUri($uri);
+    public function setUri($uri): void;
 }

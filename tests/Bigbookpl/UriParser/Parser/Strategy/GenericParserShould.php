@@ -4,7 +4,7 @@ namespace Bigbookpl\UriParser\Parser\Strategy;
 use Bigbookpl\UriParser\Parser\ParserException;
 use PHPUnit\Framework\TestCase;
 
-class GenericShould extends TestCase
+class GenericParserShould extends TestCase
 {
 
     /**
@@ -13,7 +13,7 @@ class GenericShould extends TestCase
     public function returnParsedObject()
     {
         //given
-        $cut = new Generic();
+        $cut = new GenericParser();
         $cut->setUri("abc://username:password@example.com:123/path/data?key=value&key2=value2#fragid1");
 
         //when
@@ -40,7 +40,7 @@ class GenericShould extends TestCase
         $this->expectException(ParserException::class);
 
         //given
-        $cut = new Generic();
+        $cut = new GenericParser();
         $cut->setUri($invalidUri);
 
         //when

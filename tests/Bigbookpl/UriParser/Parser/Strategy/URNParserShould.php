@@ -4,7 +4,7 @@ namespace Bigbookpl\UriParser\Parser\Strategy;
 use Bigbookpl\UriParser\Parser\ParserException;
 use PHPUnit\Framework\TestCase;
 
-class URNShould extends TestCase
+class URNParserShould extends TestCase
 {
 
     /**
@@ -12,7 +12,7 @@ class URNShould extends TestCase
      */
     public function returnParsedObject(){
         //given
-        $cut = new URN();
+        $cut = new URNParser();
         $cut->setUri("urn:mpeg:mpeg7:schema:2001");
 
         //when
@@ -33,7 +33,7 @@ class URNShould extends TestCase
         $this->expectException(ParserException::class);
 
         //given
-        $cut = new URN();
+        $cut = new URNParser();
         $cut->setUri("urn:mpeg72001");
 
         //when

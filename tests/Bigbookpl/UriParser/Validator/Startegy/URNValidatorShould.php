@@ -4,7 +4,7 @@ namespace Bigbookpl\UriParser\Validator\Strategy;
 use Bigbookpl\UriParser\Validator\ValidationException;
 use PHPUnit\Framework\TestCase;
 
-class URNShould extends TestCase
+class URNValidatorShould extends TestCase
 {
     /**
      * @test
@@ -12,7 +12,7 @@ class URNShould extends TestCase
     public function returnTrueIfURNValid()
     {
         //given
-        $cut = new URN();
+        $cut = new URNValidator();
         $cut->setUri('urn:issn:9788375540598');
 
         //when
@@ -31,7 +31,7 @@ class URNShould extends TestCase
         $this->expectException(ValidationException::class);
 
         //given
-        $cut = new URN();
+        $cut = new URNValidator();
         $cut->setUri('urn:1hsagfhgdsfaf');
 
         //when
