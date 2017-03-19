@@ -13,7 +13,7 @@ class EmailShould extends TestCase
     {
         //given
         $cut = new Email();
-        $cut->setUri('mail:harriet@vanger.company.se');
+        $cut->setUri('mailto:harriet@vanger.company.se');
 
         //when
         $result = $cut->validate();
@@ -32,7 +32,7 @@ class EmailShould extends TestCase
 
         //given
         $cut = new Email();
-        $cut->setUri('mail:harriet@vange');
+        $cut->setUri('mailto:harriet@vange');
 
         //when
         $cut->validate();

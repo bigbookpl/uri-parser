@@ -26,10 +26,10 @@ class URN implements Parser
     {
         $matches = array();
 
-        if (!preg_match($this->pattern, $this->uri, $matches))
-        {
+        if (!preg_match($this->pattern, $this->uri, $matches)) {
             throw new ParserException();
         }
+
         return $matches;
     }
 
@@ -37,7 +37,7 @@ class URN implements Parser
     {
         $parsed = new ParsedURI();
         $parsed->setPath($matches['path'])
-               ->setScheme($matches['scheme']);
+            ->setScheme($matches['scheme']);
 
         return $parsed;
     }

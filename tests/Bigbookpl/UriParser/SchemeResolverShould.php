@@ -32,7 +32,7 @@ class SchemeResolverShould extends TestCase
     public function returnValidatorForEMAIL()
     {
         //given
-        $uri = 'mail:mikael@blomkvist.se';
+        $uri = 'mailto:mikael@blomkvist.se';
         $cut = new SchemeResolver($uri);
 
         $cut->addCustomValidator(new Email());

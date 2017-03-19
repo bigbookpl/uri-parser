@@ -5,8 +5,7 @@ use Bigbookpl\UriParser\Validator\ValidationException;
 
 class Email implements Validator
 {
-    //todo: add mailto schema maybe?
-    const SCHEME = 'mail';
+    const SCHEME = 'mailto';
 
     private $uri;
 
@@ -22,11 +21,9 @@ class Email implements Validator
      */
     public function validate(): bool
     {
-        if (preg_match('/^mail:([\w-\.]+)@([\w-\.]+\.[a-z]{2,})/',$this->uri)){
+        if (preg_match('/^mailto:([\w-\.]+)@([\w-\.]+\.[a-z]{2,})/', $this->uri)) {
             return true;
-        }
-        else
-        {
+        } else {
             throw new ValidationException();
         }
     }

@@ -20,8 +20,7 @@ REGEX;
     public function getParsed(): ParsedURI
     {
         $matches = array();
-        if (!$this->parse($matches))
-        {
+        if (!$this->parse($matches)) {
             throw new ParserException();
         }
 
@@ -37,13 +36,12 @@ REGEX;
     {
         $parsed = new ParsedURI();
         $parsed->setScheme($matches['scheme'])
-               ->setUserInformation($matches['userinfo'])
-               ->setHost($matches['host'])
-               ->setPort($matches['port'])
-               ->setPath($matches['path'])
-               ->setQuery($matches['query'])
-               ->setFragment($matches['fragment'])
-        ;
+            ->setUserInformation($matches['userinfo'])
+            ->setHost($matches['host'])
+            ->setPort($matches['port'])
+            ->setPath($matches['path'])
+            ->setQuery($matches['query'])
+            ->setFragment($matches['fragment']);
 
         return $parsed;
     }
