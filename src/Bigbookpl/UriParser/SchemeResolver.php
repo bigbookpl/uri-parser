@@ -75,7 +75,7 @@ class SchemeResolver
     private function getSchemeName(string $uri): string
     {
         if (0 == preg_match($this->pattern, $uri, $matches)) {
-            throw new ValidationException("Scheme not found");
+            throw new ValidationException("Invalid scheme");
         } else {
             return $matches[1];
         }

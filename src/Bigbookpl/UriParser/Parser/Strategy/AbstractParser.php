@@ -26,7 +26,7 @@ abstract class AbstractParser implements Parser
         $matches = array();
 
         if (!preg_match($this->getPattern(), $this->uri, $matches)) {
-            throw new ParserException();
+            throw new ParserException("Parsing error");
         }
 
         return $matches;
