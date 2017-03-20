@@ -27,8 +27,9 @@ class GenericParserShould extends TestCase
         $this->assertEquals('/path/data', $result->getPath());
         $this->assertEquals('key=value&key2=value2', $result->getQuery());
         $this->assertEquals('fragid1', $result->getFragment());
+        $this->assertEquals('username:password@example.com:123', $result->getAuthority());
+        $this->assertEquals('username:password@example.com:123/path/data', $result->getHierarchicalPart());
     }
-
 
     /**
      * @test

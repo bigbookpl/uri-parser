@@ -11,6 +11,7 @@ class ParsedURI
     private $path;
     private $query;
     private $fragment;
+    private $authority;
 
     const EMPTY_STRING = '';
 
@@ -137,4 +138,25 @@ class ParsedURI
         return $this;
     }
 
+    public function getHierarchicalPart(){
+        return $this->getAuthority() . $this->getPath();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAuthority()
+    {
+        return $this->authority;
+    }
+
+    /**
+     * @param mixed $authority
+     * @return $this
+     */
+    public function setAuthority($authority)
+    {
+        $this->authority = $authority;
+        return $this;
+    }
 }
