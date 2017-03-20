@@ -776,12 +776,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "bfbb0c32fa928d33ce3656e5228e8ada1b70df4c"
+                "reference": "8ced1bc3dea09e1bd4f2e0b9206edbc1cf1f5949"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/bfbb0c32fa928d33ce3656e5228e8ada1b70df4c",
-                "reference": "bfbb0c32fa928d33ce3656e5228e8ada1b70df4c",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/8ced1bc3dea09e1bd4f2e0b9206edbc1cf1f5949",
+                "reference": "8ced1bc3dea09e1bd4f2e0b9206edbc1cf1f5949",
                 "shasum": ""
             },
             "require": {
@@ -851,7 +851,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2017-03-15 13:04:53"
+            "time": "2017-03-19 16:55:03"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -1586,12 +1586,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dependency-injection.git",
-                "reference": "0f4b3b36769d8792c8aacd284bb8df3866802837"
+                "reference": "3a2841750793f7b6d96f69ee84c96ec1c48377b7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/dependency-injection/zipball/0f4b3b36769d8792c8aacd284bb8df3866802837",
-                "reference": "0f4b3b36769d8792c8aacd284bb8df3866802837",
+                "url": "https://api.github.com/repos/symfony/dependency-injection/zipball/3a2841750793f7b6d96f69ee84c96ec1c48377b7",
+                "reference": "3a2841750793f7b6d96f69ee84c96ec1c48377b7",
                 "shasum": ""
             },
             "require": {
@@ -1648,7 +1648,7 @@
             ],
             "description": "Symfony DependencyInjection Component",
             "homepage": "https://symfony.com",
-            "time": "2017-03-14 21:50:16"
+            "time": "2017-03-20 10:06:58"
         },
         {
             "name": "symfony/filesystem",

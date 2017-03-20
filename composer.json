@@ -1,8 +1,9 @@
 {
     "name": "bigbookpl/uri-parser",
     "description": "URI parser",
-    "type": "project",
+    "type": "library",
     "require": {
+        "php": ">=7.1"
     },
     "require-dev":{
         "phpunit/phpunit": "^6.0",
