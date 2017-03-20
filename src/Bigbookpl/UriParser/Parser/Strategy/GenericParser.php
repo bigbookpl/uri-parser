@@ -8,15 +8,14 @@ class GenericParser extends AbstractParser
     protected function getParsedURI($matches): ParsedURI
     {
         $parsed = new ParsedURI();
-        $parsed->setScheme($matches['scheme'])
-            ->setUserInformation($matches['userinfo'])
-            ->setHost($matches['host'])
-            ->setPort($matches['port'])
-            ->setPath($matches['path'])
-            ->setQuery($matches['query'])
-            ->setFragment($matches['fragment'])
-            ->setAuthority($matches['authority'])
-        ;
+        $parsed->setScheme($this->getValue('scheme', $matches))
+            ->setUserInformation($this->getValue('userinfo', $matches))
+            ->setHost($this->getValue('host', $matches))
+            ->setPort($this->getValue('port', $matches))
+            ->setPath($this->getValue('path', $matches))
+            ->setQuery($this->getValue('query', $matches))
+            ->setFragment($this->getValue('fragment', $matches))
+            ->setAuthority($this->getValue('authority', $matches));
 
         return $parsed;
     }
@@ -31,5 +30,14 @@ REGEX;
     public function getScheme()
     {
         return null;
+    }
+
+    private function getValue(string $key, array $array, string $default = ''): string
+    {
+        if (array_key_exists($key, $array)) {
+            return $array[$key];
+        }
+
+        return $default;
     }
 }
