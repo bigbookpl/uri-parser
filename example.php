@@ -15,7 +15,7 @@ $schemeResolver->addCustomValidator(new \Bigbookpl\UriParser\Validator\Strategy\
 
 $validator    = $schemeResolver->getValidator();
 if ($validator->validate()){
-    print 'URI is valid\n';
+    echo 'URI is valid\n';
 } else {
     echo 'URI is not valid\n';
 }
