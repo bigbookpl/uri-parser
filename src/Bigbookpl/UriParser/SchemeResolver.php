@@ -4,15 +4,17 @@ namespace Bigbookpl\UriParser;
 
 use Bigbookpl\UriParser\Parser\Strategy\GenericParser;
 use Bigbookpl\UriParser\Parser\Strategy\Parser;
+use Bigbookpl\UriParser\Parser\Strategy\URNParser;
 use Bigbookpl\UriParser\Validator\Strategy\GenericValidator;
+use Bigbookpl\UriParser\Validator\Strategy\URNValidator;
 use Bigbookpl\UriParser\Validator\Strategy\Validator;
 use Bigbookpl\UriParser\Validator\ValidationException;
 
 class SchemeResolver
 {
     private $uri;
-    private $validators;
-    private $parsers;
+    private $validators = array();
+    private $parsers = array();
     private $pattern = '/^([[:alpha:]]+[[:alnum:]\+-\.]*):(\/{1,2})?/';
     private $schemeName;
 
@@ -20,6 +22,8 @@ class SchemeResolver
     {
         $this->uri = $uri;
         $this->schemeName = $this->getSchemeName($this->uri);
+//        $this->addCustomValidator(new URNValidator());
+        $this->addCustomParser(new URNParser());
     }
 
     public function addCustomValidator(Validator $validator)
@@ -31,7 +35,6 @@ class SchemeResolver
     {
         $this->parsers[$parser->getScheme()] = $parser;
     }
-
 
     public function getValidator(): Validator
     {

@@ -21,8 +21,6 @@ class SchemeResolver_getParserShould extends TestCase
         $uri = 'http://www.goodreads.com/book/show/7822895-the-millennium-trilogy';
         $cut = new SchemeResolver($uri);
 
-        $cut->addCustomParser(new URNParser());
-
         //when
         $result = $cut->getParser();
 
@@ -39,8 +37,6 @@ class SchemeResolver_getParserShould extends TestCase
         $uri = 'mailto:mikael@blomkvist.se';
         $cut = new SchemeResolver($uri);
 
-        $cut->addCustomParser(new URNParser());
-
         //when
         $result = $cut->getParser();
 
@@ -56,8 +52,6 @@ class SchemeResolver_getParserShould extends TestCase
         //given
         $uri = 'urn:postcode:133-49';
         $cut = new SchemeResolver($uri);
-
-        $cut->addCustomParser(new URNParser());
 
         //when
         $result = $cut->getParser();

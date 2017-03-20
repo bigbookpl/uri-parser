@@ -1,7 +1,7 @@
 {
     "name": "bigbookpl/uri-parser",
     "description": "URI parser",
-    "type": "library",
+    "type": "project",
     "require": {
         "php": ">=7.1"
     },

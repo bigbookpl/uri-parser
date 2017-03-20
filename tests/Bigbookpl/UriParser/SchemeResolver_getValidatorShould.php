@@ -5,7 +5,6 @@ namespace Bigbookpl\UriParser;
 use Bigbookpl\UriParser\Validator\Http;
 use Bigbookpl\UriParser\Validator\Strategy\EmailValidator;
 use Bigbookpl\UriParser\Validator\Strategy\GenericValidator;
-use Bigbookpl\UriParser\Validator\Strategy\URNValidator;
 use PHPUnit\Framework\TestCase;
 
 class SchemeResolver_getValidatorShould extends TestCase
@@ -31,6 +30,22 @@ class SchemeResolver_getValidatorShould extends TestCase
     /**
      * @test
      */
+    public function returnValidatorForURN()
+    {
+        //given
+        $uri = 'uri:tel:692000000';
+        $cut = new SchemeResolver($uri);
+
+        //when
+        $result = $cut->getValidator();
+
+        //then
+        $this->assertInstanceOf(GenericValidator::class, $result);
+    }
+
+    /**
+     * @test
+     */
     public function returnValidatorForEMAIL()
     {
         //given
@@ -38,7 +53,6 @@ class SchemeResolver_getValidatorShould extends TestCase
         $cut = new SchemeResolver($uri);
 
         $cut->addCustomValidator(new EmailValidator());
-        $cut->addCustomValidator(new URNValidator());
 
         //when
         $result = $cut->getValidator();

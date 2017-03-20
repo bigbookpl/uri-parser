@@ -1,7 +1,3 @@
-# Bigbookpl/UriParser
-
-Example of usage
-```
 <?php
 
 function __autoload($class){
@@ -31,5 +27,3 @@ if ($validator->validate()){
 $parser = $schemeResolver->getParser();
 $parsedObject = $parser->getParsed();
 echo $parsedObject->getHost();
-
-```
