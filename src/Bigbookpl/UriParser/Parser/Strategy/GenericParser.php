@@ -23,7 +23,7 @@ class GenericParser extends AbstractParser
     protected function getPattern(): string
     {
         return <<<REGEX
-/^(?'scheme'[[:alpha:]]+[[:alnum:]\+-\.]*?):(?:(\/{2})?(?'authority'(?:((?'userinfo'[a-z]+:?[a-z]+)@))?(?'host'[a-z.-]+)(?:(:(?'port'[0-9]{1,5})))?))?(?:(?'path'\/[\/\w.-]*))?(?:(\?(?'query'[=&\w]*)))?(?:(#(?'fragment'.+)))?$/
+/^(?'scheme'[[:alpha:]]+[[:alnum:]\+-\.]*?):(?:(\/{2})?(?'authority'(?:((?'userinfo'[[:alnum:]]+(:\S+)?)@))?(?'host'[[:alnum:].-]+)(?:(:(?'port'[1-9][0-9]{0,4})))?))?(?:(?'path'\/[\/[[:alnum:]@&=+$.,;\/]*))?(?:(\?(?'query'[[:alnum:];\/?@&=+$,%\-!*'()]*)))?(?:(#(?'fragment'[[:alnum:];\/?@&=+$,%\-!*'()]+)))?$/
 REGEX;
     }
 
