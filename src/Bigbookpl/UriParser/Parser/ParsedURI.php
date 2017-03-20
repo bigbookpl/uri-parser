@@ -91,7 +91,7 @@ class ParsedURI implements JsonSerializable
      */
     public function getHost(): string
     {
-        return $this->host;
+        return $this->host ?? self::EMPTY_STRING;
     }
 
     /**
@@ -109,7 +109,7 @@ class ParsedURI implements JsonSerializable
      */
     public function getQuery(): string
     {
-        return $this->query;
+        return $this->query ?? self::EMPTY_STRING;
     }
 
     /**
@@ -127,7 +127,7 @@ class ParsedURI implements JsonSerializable
      */
     public function getFragment(): string
     {
-        return $this->fragment;
+        return $this->fragment ?? self::EMPTY_STRING;
     }
 
     /**
@@ -141,7 +141,7 @@ class ParsedURI implements JsonSerializable
     }
 
     public function getHierarchicalPart(){
-        return $this->getAuthority() . $this->getPath();
+        return ( $this->getAuthority() . $this->getPath() )?? self::EMPTY_STRING;
     }
 
     /**
