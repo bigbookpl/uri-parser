@@ -4,7 +4,7 @@
 # Bigbookpl/UriParser
 
 Example of usage
-```
+```php
 <?php
 
 function __autoload($class){
