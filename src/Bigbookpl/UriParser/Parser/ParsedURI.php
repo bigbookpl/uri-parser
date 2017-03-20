@@ -2,7 +2,9 @@
 
 namespace Bigbookpl\UriParser\Parser;
 
-class ParsedURI
+use JsonSerializable;
+
+class ParsedURI implements JsonSerializable
 {
     private $scheme;
     private $userInformation;
@@ -158,5 +160,20 @@ class ParsedURI
     {
         $this->authority = $authority;
         return $this;
+    }
+
+    public function jsonSerialize()
+    {
+        return array(
+            'scheme' => $this->getScheme(),
+            'userInformation' => $this->getUserInformation(),
+            'host' => $this->getHost(),
+            'port' => $this->getPort(),
+            'path' => $this->getPath(),
+            'query' => $this->getQuery(),
+            'fragment' => $this->getFragment(),
+            'authority' => $this->getAuthority(),
+            'hierarchicalPart' => $this->getHierarchicalPart()
+        );
     }
 }

@@ -1,5 +1,6 @@
 {
     "name": "bigbookpl/uri-parser",
+    "version": "1.0.1",
     "description": "URI parser",
     "type": "project",
     "require": {
