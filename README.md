@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.org/bigbookpl/uri-parser.svg?branch=master)](https://travis-ci.org/bigbookpl/uri-parser)
 [![Code Climate](https://codeclimate.com/github/bigbookpl/uri-parser/badges/gpa.svg)](https://codeclimate.com/github/bigbookpl/uri-parser)
+[![Test Coverage](https://codeclimate.com/github/bigbookpl/uri-parser/badges/coverage.svg)](https://codeclimate.com/github/bigbookpl/uri-parser/coverage)
 
 # Bigbookpl/UriParser
 
