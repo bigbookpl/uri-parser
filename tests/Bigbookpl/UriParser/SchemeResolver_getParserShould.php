@@ -2,12 +2,11 @@
 
 namespace Bigbookpl\UriParser;
 
+use Bigbookpl\UriParser\Parser\ParserException;
 use Bigbookpl\UriParser\Parser\Strategy\GenericParser;
 use Bigbookpl\UriParser\Parser\Strategy\URNParser;
 use Bigbookpl\UriParser\Validator\Http;
-use Bigbookpl\UriParser\Validator\Strategy\EmailValidator;
 use Bigbookpl\UriParser\Validator\Strategy\GenericValidator;
-use Bigbookpl\UriParser\Validator\Strategy\URNValidator;
 use PHPUnit\Framework\TestCase;
 
 class SchemeResolver_getParserShould extends TestCase
@@ -61,5 +60,22 @@ class SchemeResolver_getParserShould extends TestCase
 
         //then
         $this->assertInstanceOf(URNParser::class, $result);
+    }
+
+    /**
+     * @test
+     */
+    public function throwExceptionWhenGenericParserNotSet()
+    {
+        //expect
+        $this->expectException(ParserException::class);
+
+        //given
+        $uri = 'http://www.goodreads.com/book/show/7822895-the-millennium-trilogy';
+        $cut = new SchemeResolver($uri);
+        $cut->addValidator(new GenericValidator());
+
+        //when
+        $cut->getParser();
     }
 }

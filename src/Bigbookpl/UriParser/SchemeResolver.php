@@ -2,13 +2,10 @@
 
 namespace Bigbookpl\UriParser;
 
+use Bigbookpl\UriParser\Parser\ParserException;
 use Bigbookpl\UriParser\Parser\Strategy\AbstractParser;
-use Bigbookpl\UriParser\Parser\Strategy\GenericParser;
 use Bigbookpl\UriParser\Parser\Strategy\Parser;
-use Bigbookpl\UriParser\Parser\Strategy\URNParser;
 use Bigbookpl\UriParser\Validator\Strategy\AbstractValidator;
-use Bigbookpl\UriParser\Validator\Strategy\GenericValidator;
-use Bigbookpl\UriParser\Validator\Strategy\URNValidator;
 use Bigbookpl\UriParser\Validator\Strategy\Validator;
 use Bigbookpl\UriParser\Validator\ValidationException;
 
@@ -64,7 +61,10 @@ class SchemeResolver
 
     private function getGenericParser(): Parser
     {
-        return $this->parsers[AbstractParser::GENERIC];
+        if(array_key_exists(AbstractParser::GENERIC, $this->parsers)){
+            return $this->parsers[AbstractParser::GENERIC];
+        }
+        throw new ParserException("Generic parser not found");
     }
 
     private function getGenericValidator(): Validator
@@ -72,7 +72,7 @@ class SchemeResolver
         if(array_key_exists(AbstractValidator::GENERIC, $this->validators)){
             return $this->validators[AbstractValidator::GENERIC];
         }
-        throw new ValidationException("Generic scheme not found");
+        throw new ValidationException("Generic validator not found");
     }
 
     private function getSchemeName(string $uri): string
