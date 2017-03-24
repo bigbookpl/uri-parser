@@ -18,7 +18,7 @@ class SchemeResolver_getParserShould extends TestCase
     {
         //given
         $uri = 'http://www.goodreads.com/book/show/7822895-the-millennium-trilogy';
-        $cut = new SchemeResolver($uri);
+        $cut = new SchemeResolver($uri, new ValidatorSet());
         $cut->addParser(new GenericParser());
 
         //when
@@ -35,7 +35,7 @@ class SchemeResolver_getParserShould extends TestCase
     {
         //given
         $uri = 'mailto:mikael@blomkvist.se';
-        $cut = new SchemeResolver($uri);
+        $cut = new SchemeResolver($uri, new ValidatorSet());
         $cut->addParser(new GenericParser());
 
         //when
@@ -52,7 +52,7 @@ class SchemeResolver_getParserShould extends TestCase
     {
         //given
         $uri = 'urn:postcode:133-49';
-        $cut = new SchemeResolver($uri);
+        $cut = new SchemeResolver($uri, new ValidatorSet());
         $cut->addParser(new URNParser());
 
         //when
@@ -72,8 +72,10 @@ class SchemeResolver_getParserShould extends TestCase
 
         //given
         $uri = 'http://www.goodreads.com/book/show/7822895-the-millennium-trilogy';
-        $cut = new SchemeResolver($uri);
-        $cut->addValidator(new GenericValidator());
+        $validatorSet = new ValidatorSet();
+        $validatorSet->addValidator(new GenericValidator());
+
+        $cut = new SchemeResolver($uri, $validatorSet);
 
         //when
         $cut->getParser();

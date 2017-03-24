@@ -2,77 +2,37 @@
 
 namespace Bigbookpl\UriParser;
 
-use Bigbookpl\UriParser\Parser\ParserException;
-use Bigbookpl\UriParser\Parser\Strategy\AbstractParser;
 use Bigbookpl\UriParser\Parser\Strategy\Parser;
-use Bigbookpl\UriParser\Validator\Strategy\AbstractValidator;
 use Bigbookpl\UriParser\Validator\Strategy\Validator;
 use Bigbookpl\UriParser\Validator\ValidationException;
 
 class SchemeResolver
 {
     private $uri;
-    private $validators = array();
-    private $parsers = array();
+    /**
+     * @var ValidatorSet
+     */
+    private $validatorSet;
     private $pattern = '/^([[:alpha:]]+[[:alnum:]\+-\.]*):(\/{1,2})?/';
     private $schemeName;
+    private $parserSet;
 
-    public function __construct($uri)
+    public function __construct($uri, ValidatorSet $validatorSet, ParserSet $parserSet)
     {
         $this->uri = $uri;
+        $this->validatorSet = $validatorSet;
+        $this->parserSet = $parserSet;
         $this->schemeName = $this->getSchemeName($this->uri);
-    }
-
-    public function addValidator(Validator $validator)
-    {
-        $this->validators[$validator->getScheme()] = $validator;
-    }
-
-    public function addParser(Parser $parser)
-    {
-        $this->parsers[$parser->getScheme()] = $parser;
     }
 
     public function getValidator(): Validator
     {
-        if (array_key_exists($this->schemeName, $this->validators)) {
-            $validator = $this->validators[$this->schemeName];
-        } else {
-            $validator = $this->getGenericValidator();
-        }
-
-        $validator->setUri($this->uri);
-
-        return $validator;
+        return $this->validatorSet->getSchemaValidator($this->schemeName);
     }
 
     public function getParser(): Parser
     {
-        if (array_key_exists($this->schemeName, $this->parsers)) {
-            $parser = $this->parsers[$this->schemeName];
-        } else {
-            $parser = $this->getGenericParser();
-        }
-
-        $parser->setUri($this->uri);
-
-        return $parser;
-    }
-
-    private function getGenericParser(): Parser
-    {
-        if(array_key_exists(AbstractParser::GENERIC, $this->parsers)){
-            return $this->parsers[AbstractParser::GENERIC];
-        }
-        throw new ParserException("Generic parser not found");
-    }
-
-    private function getGenericValidator(): Validator
-    {
-        if(array_key_exists(AbstractValidator::GENERIC, $this->validators)){
-            return $this->validators[AbstractValidator::GENERIC];
-        }
-        throw new ValidationException("Generic validator not found");
+        return $this->parserSet->getSchemaParser($this->schemeName);
     }
 
     private function getSchemeName(string $uri): string
@@ -83,5 +43,4 @@ class SchemeResolver
             return $matches[1];
         }
     }
-
 }

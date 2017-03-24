@@ -18,10 +18,11 @@ class SchemeResolver_getValidatorShould extends TestCase
     {
         //given
         $uri = 'http://www.goodreads.com/book/show/7822895-the-millennium-trilogy';
-        $cut = new SchemeResolver($uri);
+        $validatorSet = new ValidatorSet();
+        $validatorSet->addValidator(new GenericValidator());
+        $validatorSet->addValidator(new EmailValidator());
 
-        $cut->addValidator(new GenericValidator());
-        $cut->addValidator(new EmailValidator());
+        $cut = new SchemeResolver($uri, $validatorSet);
 
         //when
         $result = $cut->getValidator();
@@ -37,8 +38,9 @@ class SchemeResolver_getValidatorShould extends TestCase
     {
         //given
         $uri = 'urn:tel:692000000';
-        $cut = new SchemeResolver($uri);
-        $cut->addValidator(new URNValidator());
+        $validatorSet = new ValidatorSet();
+        $validatorSet->addValidator(new URNValidator());
+        $cut = new SchemeResolver($uri, $validatorSet);
 
         //when
         $result = $cut->getValidator();
@@ -54,8 +56,9 @@ class SchemeResolver_getValidatorShould extends TestCase
     {
         //given
         $uri = 'mailto:mikael@blomkvist.se';
-        $cut = new SchemeResolver($uri);
-        $cut->addValidator(new EmailValidator());
+        $validatorSet = new ValidatorSet();
+        $validatorSet->addValidator(new EmailValidator());
+        $cut = new SchemeResolver($uri, $validatorSet);
 
         //when
         $result = $cut->getValidator();
@@ -74,7 +77,7 @@ class SchemeResolver_getValidatorShould extends TestCase
 
         //given
         $uri = 'mikael@blomkvist.se';
-        $cut = new SchemeResolver($uri);
+        $cut = new SchemeResolver($uri, $this->emptyValidatorSet());
 
         //when
         $cut->getValidator();
@@ -90,7 +93,7 @@ class SchemeResolver_getValidatorShould extends TestCase
 
         //given
         $uri = '&://mikael@blomkvist.se';
-        $cut = new SchemeResolver($uri);
+        $cut = new SchemeResolver($uri, $this->emptyValidatorSet());
 
         //when
         $cut->getValidator();
@@ -106,7 +109,7 @@ class SchemeResolver_getValidatorShould extends TestCase
 
         //given
         $uri = 'mikael@blomkvist.se:21/Miriam';
-        $cut = new SchemeResolver($uri);
+        $cut = new SchemeResolver($uri, $this->emptyValidatorSet());
 
         //when
         $cut->getValidator();
@@ -122,10 +125,20 @@ class SchemeResolver_getValidatorShould extends TestCase
 
         //given
         $uri = 'http://www.goodreads.com/book/show/7822895-the-millennium-trilogy';
-        $cut = new SchemeResolver($uri);
+        $validatorSet = new ValidatorSet();
+        $validatorSet->addValidator(new EmailValidator());
+        $cut = new SchemeResolver($uri, $validatorSet);
 
         //when
         $cut->getValidator();
+    }
+
+    /**
+     * @return ValidatorSet
+     */
+    public function emptyValidatorSet(): ValidatorSet
+    {
+        return new ValidatorSet();
     }
 
 }
