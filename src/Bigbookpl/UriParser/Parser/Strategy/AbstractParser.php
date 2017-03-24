@@ -34,6 +34,9 @@ abstract class AbstractParser implements Parser
 
     protected abstract function getPattern(): string;
 
-    protected abstract function getParsedURI($matches);
+    public function getParsedURI($matches): ParsedURI
+    {
+        return (new ParsedURI())->valueOf($matches);
+    }
 
 }

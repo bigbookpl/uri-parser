@@ -22,7 +22,7 @@ class SchemeResolver
     {
         $this->uri = $uri;
         $this->schemeName = $this->getSchemeName($this->uri);
-//        $this->addCustomValidator(new URNValidator());
+        $this->addCustomValidator(new URNValidator());
         $this->addCustomParser(new URNParser());
     }
 
@@ -72,6 +72,12 @@ class SchemeResolver
         return new GenericValidator();
     }
 
+    /**
+     * @param string $uri
+     *
+     * @return string
+     * @throws ValidationException
+     */
     private function getSchemeName(string $uri): string
     {
         if (0 == preg_match($this->pattern, $uri, $matches)) {

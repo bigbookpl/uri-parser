@@ -176,4 +176,27 @@ class ParsedURI implements JsonSerializable
             'hierarchicalPart' => $this->getHierarchicalPart()
         );
     }
+
+    public function valueOf(array $matches){
+
+        $this->setScheme($this->getValue('scheme', $matches))
+            ->setUserInformation($this->getValue('userinfo', $matches))
+            ->setHost($this->getValue('host', $matches))
+            ->setPort($this->getValue('port', $matches))
+            ->setPath($this->getValue('path', $matches))
+            ->setQuery($this->getValue('query', $matches))
+            ->setFragment($this->getValue('fragment', $matches))
+            ->setAuthority($this->getValue('authority', $matches));
+
+        return $this;
+    }
+
+    private function getValue(string $key, array $array, string $default = ''): string
+    {
+        if (array_key_exists($key, $array)) {
+            return $array[$key];
+        }
+
+        return $default;
+    }
 }

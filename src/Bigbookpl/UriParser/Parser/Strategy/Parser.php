@@ -9,5 +9,5 @@ interface Parser
 
     public function getParsed(): ParsedURI;
 
-    public function getScheme();
+    public function getScheme(): ?string;
 }
