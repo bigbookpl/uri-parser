@@ -5,7 +5,7 @@ class GenericParser extends AbstractParser
 {
     public function getScheme(): ?string
     {
-        return null;
+        return self::GENERIC;
     }
 
     protected function getPattern(): string

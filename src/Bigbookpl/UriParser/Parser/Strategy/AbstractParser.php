@@ -6,7 +6,7 @@ use Bigbookpl\UriParser\Parser\ParserException;
 
 abstract class AbstractParser implements Parser
 {
-
+    const GENERIC = '__generic';
     protected $uri;
 
     public function setUri(string $uri): void

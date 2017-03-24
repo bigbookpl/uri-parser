@@ -5,6 +5,8 @@ namespace Bigbookpl\UriParser;
 use Bigbookpl\UriParser\Validator\Http;
 use Bigbookpl\UriParser\Validator\Strategy\EmailValidator;
 use Bigbookpl\UriParser\Validator\Strategy\GenericValidator;
+use Bigbookpl\UriParser\Validator\Strategy\URNValidator;
+use Bigbookpl\UriParser\Validator\ValidationException;
 use PHPUnit\Framework\TestCase;
 
 class SchemeResolver_getValidatorShould extends TestCase
@@ -18,7 +20,8 @@ class SchemeResolver_getValidatorShould extends TestCase
         $uri = 'http://www.goodreads.com/book/show/7822895-the-millennium-trilogy';
         $cut = new SchemeResolver($uri);
 
-        $cut->addCustomValidator(new EmailValidator());
+        $cut->addValidator(new GenericValidator());
+        $cut->addValidator(new EmailValidator());
 
         //when
         $result = $cut->getValidator();
@@ -33,14 +36,15 @@ class SchemeResolver_getValidatorShould extends TestCase
     public function returnValidatorForURN()
     {
         //given
-        $uri = 'uri:tel:692000000';
+        $uri = 'urn:tel:692000000';
         $cut = new SchemeResolver($uri);
+        $cut->addValidator(new URNValidator());
 
         //when
         $result = $cut->getValidator();
 
         //then
-        $this->assertInstanceOf(GenericValidator::class, $result);
+        $this->assertInstanceOf(URNValidator::class, $result);
     }
 
     /**
@@ -51,8 +55,7 @@ class SchemeResolver_getValidatorShould extends TestCase
         //given
         $uri = 'mailto:mikael@blomkvist.se';
         $cut = new SchemeResolver($uri);
-
-        $cut->addCustomValidator(new EmailValidator());
+        $cut->addValidator(new EmailValidator());
 
         //when
         $result = $cut->getValidator();
@@ -67,7 +70,7 @@ class SchemeResolver_getValidatorShould extends TestCase
     public function throwExceptionWhenSchemeDoNoPassed()
     {
         //expect
-        $this->expectException(\Exception::class);
+        $this->expectException(ValidationException::class);
 
         //given
         $uri = 'mikael@blomkvist.se';
@@ -83,7 +86,7 @@ class SchemeResolver_getValidatorShould extends TestCase
     public function throwExceptionWhenSchemeIsInvalid()
     {
         //expect
-        $this->expectException(\Exception::class);
+        $this->expectException(ValidationException::class);
 
         //given
         $uri = '&://mikael@blomkvist.se';
@@ -99,7 +102,7 @@ class SchemeResolver_getValidatorShould extends TestCase
     public function throwExceptionWhenPortCouldBeRecognizedAsScheme()
     {
         //expect
-        $this->expectException(\Exception::class);
+        $this->expectException(ValidationException::class);
 
         //given
         $uri = 'mikael@blomkvist.se:21/Miriam';
@@ -108,4 +111,21 @@ class SchemeResolver_getValidatorShould extends TestCase
         //when
         $cut->getValidator();
     }
+
+    /**
+     * @test
+     */
+    public function throwExceptionWhenGenericValidatorNotSet()
+    {
+        //expect
+        $this->expectException(ValidationException::class);
+
+        //given
+        $uri = 'http://www.goodreads.com/book/show/7822895-the-millennium-trilogy';
+        $cut = new SchemeResolver($uri);
+
+        //when
+        $cut->getValidator();
+    }
+
 }

@@ -59,7 +59,7 @@ class GenericParserShould extends TestCase
         $scheme = $cut->getScheme();
 
         //then
-        $this->assertNull($scheme);
+        $this->assertEquals('__generic', $scheme);
     }
 
     /**

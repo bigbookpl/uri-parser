@@ -6,6 +6,7 @@ use Bigbookpl\UriParser\Validator\ValidationException;
 
 abstract class AbstractValidator implements Validator
 {
+    const GENERIC = '__generic';
     protected $uri;
     protected $scheme;
 
