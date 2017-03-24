@@ -21,5 +21,8 @@
             "email": "bigbook.pl@gmail.com"
         }
     ],
-    "minimum-stability": "dev"
+    "minimum-stability": "dev",
+    "scripts": {
+        "test": "./vendor/bin/phpunit"
+    }
 }
