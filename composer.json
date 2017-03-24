@@ -10,7 +10,8 @@
         "phpunit/phpunit": "^6.0",
         "phpmd/phpmd" : "@stable",
         "phpunit/php-code-coverage": "^5.0",
-        "codeclimate/php-test-reporter": "^0.4.4"
+        "codeclimate/php-test-reporter": "^0.4.4",
+        "phpmetrics/phpmetrics": "^2.0"
     },
     "autoload": {
         "psr-4": { "": ["src/", "test/"] }
@@ -23,6 +24,8 @@
     ],
     "minimum-stability": "dev",
     "scripts": {
-        "test": "./vendor/bin/phpunit"
+        "test": "./vendor/bin/phpunit",
+        "metrics": "./vendor/bin/phpmetrics --report-html=metrics src",
+        "codeclimate": "    CODECLIMATE_REPO_TOKEN=17bc01f6e3c69e66a0f9f9ba1de58287ba6f422e2a7705f07a60ae1203ff0754 ./vendor/bin/test-reporter"
     }
 }
