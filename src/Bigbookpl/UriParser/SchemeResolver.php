@@ -27,12 +27,16 @@ class SchemeResolver
 
     public function getValidator(): Validator
     {
-        return $this->validatorSet->getSchemaValidator($this->schemeName);
+        $validator = $this->validatorSet->getSchemaValidator($this->schemeName);
+        $validator->setUri($this->uri);
+        return $validator;
     }
 
     public function getParser(): Parser
     {
-        return $this->parserSet->getSchemaParser($this->schemeName);
+        $parser = $this->parserSet->getSchemaParser($this->schemeName);
+        $parser->setUri($this->uri);
+        return $parser;
     }
 
     private function getSchemeName(string $uri): string
