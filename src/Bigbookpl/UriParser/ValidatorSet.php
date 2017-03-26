@@ -2,7 +2,6 @@
 
 namespace Bigbookpl\UriParser;
 
-
 use Bigbookpl\UriParser\Validator\Strategy\AbstractValidator;
 use Bigbookpl\UriParser\Validator\Strategy\Validator;
 use Bigbookpl\UriParser\Validator\ValidationException;

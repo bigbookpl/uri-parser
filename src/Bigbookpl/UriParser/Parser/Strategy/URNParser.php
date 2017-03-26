@@ -1,7 +1,6 @@
 <?php
-namespace Bigbookpl\UriParser\Parser\Strategy;
 
-use Bigbookpl\UriParser\Parser\ParsedURI;
+namespace Bigbookpl\UriParser\Parser\Strategy;
 
 class URNParser extends AbstractParser
 {
