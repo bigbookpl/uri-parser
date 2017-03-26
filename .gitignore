@@ -4,3 +4,8 @@
 /.css/
 /.js/
 /.fonts/
+/build/
+/metrics/
+build/
+metrics/
+phpmd_report.html
