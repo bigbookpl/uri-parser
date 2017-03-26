@@ -8,14 +8,31 @@ Example of usage
 ```php
 <?php
 
+use Bigbookpl\UriParser\Parser\Strategy\GenericParser;
+use Bigbookpl\UriParser\Parser\Strategy\URNParser;
+use Bigbookpl\UriParser\ParserSet;
+use Bigbookpl\UriParser\Validator\Strategy\EmailValidator;
+use Bigbookpl\UriParser\Validator\Strategy\GenericValidator;
+use Bigbookpl\UriParser\Validator\Strategy\URNValidator;
+use Bigbookpl\UriParser\ValidatorSet;
+
 function __autoload($class){
     require_once 'src'.DIRECTORY_SEPARATOR.str_replace('\\','/', $class).'.php';
 }
 
-$schemeResolver =  new Bigbookpl\UriParser\SchemeResolver('https://getcomposer.org/doc/04-schema.md#type');
+$uri = 'https://getcomposer.org/doc/04-schema.md#type';
+$validators = new ValidatorSet();
+$validators->addValidator(new GenericValidator())
+           ->addValidator(new EmailValidator())
+           ->addValidator(new URNValidator());
+
+$parsers = new ParserSet();
+$parsers->addParser(new GenericParser())
+        ->addParser(new URNParser());
+
+$schemeResolver =  new Bigbookpl\UriParser\SchemeResolver($uri, $validators, $parsers);
 
 //you can add your custom validators related to scheme
-$schemeResolver->addCustomValidator(new \Bigbookpl\UriParser\Validator\Strategy\EmailValidator());
 
 /**
  * Validator example
@@ -35,5 +52,4 @@ if ($validator->validate()){
 $parser = $schemeResolver->getParser();
 $parsedObject = $parser->getParsed();
 echo $parsedObject->getHost();
-
 ```
