@@ -1,5 +1,6 @@
 <?php
 
+
 use Bigbookpl\UriParser\Parser\Strategy\GenericParser;
 use Bigbookpl\UriParser\Parser\Strategy\URNParser;
 use Bigbookpl\UriParser\ParserSet;
@@ -14,22 +15,23 @@ function __autoload($class){
 
 $uri = 'https://getcomposer.org/doc/04-schema.md#type';
 $validators = new ValidatorSet();
-$validators->addValidator(new GenericValidator())
-           ->addValidator(new EmailValidator())
-           ->addValidator(new URNValidator());
 
+//you can add your custom validators related to scheme
+$validators->addValidator(new GenericValidator())
+    ->addValidator(new EmailValidator())
+    ->addValidator(new URNValidator());
+
+//you can add your custom parsers related to scheme
 $parsers = new ParserSet();
 $parsers->addParser(new GenericParser())
-        ->addParser(new URNParser());
+    ->addParser(new URNParser());
 
 $schemeResolver =  new Bigbookpl\UriParser\SchemeResolver($uri, $validators, $parsers);
 
-//you can add your custom validators related to scheme
 
 /**
  * Validator example
  */
-
 $validator    = $schemeResolver->getValidator();
 if ($validator->validate()){
     echo 'URI is valid\n';
@@ -40,7 +42,6 @@ if ($validator->validate()){
 /**
  * Parser example
  */
-
 $parser = $schemeResolver->getParser();
 $parsedObject = $parser->getParsed();
 echo $parsedObject->getHost();
