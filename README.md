@@ -25,13 +25,13 @@ $validators = new ValidatorSet();
 
 //you can add your custom validators related to scheme
 $validators->addValidator(new GenericValidator())
-           ->addValidator(new EmailValidator())
-           ->addValidator(new URNValidator());
+    ->addValidator(new EmailValidator())
+    ->addValidator(new URNValidator());
 
 //you can add your custom parsers related to scheme
 $parsers = new ParserSet();
 $parsers->addParser(new GenericParser())
-        ->addParser(new URNParser());
+    ->addParser(new URNParser());
 
 $schemeResolver =  new Bigbookpl\UriParser\SchemeResolver($uri, $validators, $parsers);
 

@@ -1,6 +1,5 @@
 <?php
 
-
 use Bigbookpl\UriParser\Parser\Strategy\GenericParser;
 use Bigbookpl\UriParser\Parser\Strategy\URNParser;
 use Bigbookpl\UriParser\ParserSet;
