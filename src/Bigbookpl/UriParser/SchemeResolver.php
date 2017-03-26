@@ -39,8 +39,7 @@ class SchemeResolver
     {
         if (0 == preg_match($this->pattern, $uri, $matches)) {
             throw new ValidationException("Invalid scheme");
-        } else {
-            return $matches[1];
         }
+        return $matches[1];
     }
 }

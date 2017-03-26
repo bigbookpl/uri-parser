@@ -25,9 +25,12 @@ abstract class AbstractValidator implements Validator
     {
         if (preg_match($this->getPattern(), $this->uri)) {
             return true;
-        } else {
-            throw new ValidationException("Invalid URI");
         }
+        throw new ValidationException("Invalid URI");
+    }
+
+    public function xx(){
+
     }
 
     protected abstract function getPattern(): string;
