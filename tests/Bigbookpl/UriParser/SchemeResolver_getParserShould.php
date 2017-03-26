@@ -6,7 +6,6 @@ use Bigbookpl\UriParser\Parser\ParserException;
 use Bigbookpl\UriParser\Parser\Strategy\GenericParser;
 use Bigbookpl\UriParser\Parser\Strategy\URNParser;
 use Bigbookpl\UriParser\Validator\Http;
-use Bigbookpl\UriParser\Validator\Strategy\GenericValidator;
 use PHPUnit\Framework\TestCase;
 
 class SchemeResolver_getParserShould extends TestCase
@@ -18,8 +17,9 @@ class SchemeResolver_getParserShould extends TestCase
     {
         //given
         $uri = 'http://www.goodreads.com/book/show/7822895-the-millennium-trilogy';
-        $cut = new SchemeResolver($uri, new ValidatorSet());
-        $cut->addParser(new GenericParser());
+        $parserSet = new ParserSet();
+        $parserSet->addParser(new GenericParser());
+        $cut = new SchemeResolver($uri, new ValidatorSet(), $parserSet);
 
         //when
         $result = $cut->getParser();
@@ -35,8 +35,9 @@ class SchemeResolver_getParserShould extends TestCase
     {
         //given
         $uri = 'mailto:mikael@blomkvist.se';
-        $cut = new SchemeResolver($uri, new ValidatorSet());
-        $cut->addParser(new GenericParser());
+        $parserSet = new ParserSet();
+        $parserSet->addParser(new GenericParser());
+        $cut = new SchemeResolver($uri, new ValidatorSet(), $parserSet);
 
         //when
         $result = $cut->getParser();
@@ -52,8 +53,9 @@ class SchemeResolver_getParserShould extends TestCase
     {
         //given
         $uri = 'urn:postcode:133-49';
-        $cut = new SchemeResolver($uri, new ValidatorSet());
-        $cut->addParser(new URNParser());
+        $parserSet = new ParserSet();
+        $parserSet->addParser(new URNParser());
+        $cut = new SchemeResolver($uri, new ValidatorSet(), $parserSet);
 
         //when
         $result = $cut->getParser();
@@ -72,10 +74,7 @@ class SchemeResolver_getParserShould extends TestCase
 
         //given
         $uri = 'http://www.goodreads.com/book/show/7822895-the-millennium-trilogy';
-        $validatorSet = new ValidatorSet();
-        $validatorSet->addValidator(new GenericValidator());
-
-        $cut = new SchemeResolver($uri, $validatorSet);
+        $cut = new SchemeResolver($uri, new ValidatorSet(), new ParserSet());
 
         //when
         $cut->getParser();
