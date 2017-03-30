@@ -164,7 +164,7 @@ class ParsedURI implements JsonSerializable
 
     public function jsonSerialize()
     {
-        return array(
+        return [
             'scheme' => $this->getScheme(),
             'userInformation' => $this->getUserInformation(),
             'host' => $this->getHost(),
@@ -174,7 +174,7 @@ class ParsedURI implements JsonSerializable
             'fragment' => $this->getFragment(),
             'authority' => $this->getAuthority(),
             'hierarchicalPart' => $this->getHierarchicalPart()
-        );
+        ];
     }
 
     public function valueOf(array $matches){

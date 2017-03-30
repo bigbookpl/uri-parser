@@ -8,7 +8,7 @@ use Bigbookpl\UriParser\Validator\ValidationException;
 
 class ValidatorSet
 {
-    private $validators = array();
+    private $validators = [];
 
     public function addValidator(Validator $validator)
     {

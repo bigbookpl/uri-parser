@@ -8,7 +8,7 @@ use Bigbookpl\UriParser\Parser\Strategy\Parser;
 
 class ParserSet
 {
-    private $parsers = array();
+    private $parsers = [];
 
     public function addParser(Parser $parser)
     {

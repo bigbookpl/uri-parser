@@ -48,13 +48,13 @@ class GenericValidatorShould extends TestCase
      * @return array
      */
     public function invalidURIData(){
-        return array(
-            array('ftp://heeee\\@#top:10'),
-            array('abc://:123/path/data?key=value&key2=value2#fragid1'),
-            array('://salander.hack/path/data?key=value&key2=value2#fragid1'),
-            array('xxx:\local/path/data?key=value&key2=value2#fragid1'),
-            array('abc://millenium.se:ABC/path/data')
-        );
+        return [
+            ['ftp://heeee\\@#top:10'],
+            ['abc://:123/path/data?key=value&key2=value2#fragid1'],
+            ['://salander.hack/path/data?key=value&key2=value2#fragid1'],
+            ['xxx:\local/path/data?key=value&key2=value2#fragid1'],
+            ['abc://millenium.se:ABC/path/data']
+        ];
     }
 
     /**
@@ -63,17 +63,17 @@ class GenericValidatorShould extends TestCase
      * @return array
      */
     public function validURIData(){
-        return array(
-            array('http://www.wennerstrom.se/?search=HansErik#top'),
-            array('abc://jjj:sss@example.com:123/path/data?key=value&key2=value2#fragid1'),
-            array('xxx:/local/path/data?key=value&key2=value2#fragid1'),
-            array('abc:///path/data?key=value&key2=value2#fragid1'),
-            array('abc:mail@test.com'),
-            array('abc://onet.pl/path/data?key=value&key2=value2#fragid1'),
-            array('abc://example.com/path/data?key=value&key2=value2#fragid1'),
-            array('abc://example.com:123/path/data?key=value&key2=value2'),
-            array('abc://jjj:ddd@example.com:123/path/data?key=value&key2=value2#fragid1'),
-            array('http://www:data@example.com:123/path/data?key=value&key2=value2#fragid1'),
-       );
+        return [
+            ['http://www.wennerstrom.se/?search=HansErik#top'],
+            ['abc://jjj:sss@example.com:123/path/data?key=value&key2=value2#fragid1'],
+            ['xxx:/local/path/data?key=value&key2=value2#fragid1'],
+            ['abc:///path/data?key=value&key2=value2#fragid1'],
+            ['abc:mail@test.com'],
+            ['abc://onet.pl/path/data?key=value&key2=value2#fragid1'],
+            ['abc://example.com/path/data?key=value&key2=value2#fragid1'],
+            ['abc://example.com:123/path/data?key=value&key2=value2'],
+            ['abc://jjj:ddd@example.com:123/path/data?key=value&key2=value2#fragid1'],
+            ['http://www:data@example.com:123/path/data?key=value&key2=value2#fragid1'],
+        ];
     }
 }

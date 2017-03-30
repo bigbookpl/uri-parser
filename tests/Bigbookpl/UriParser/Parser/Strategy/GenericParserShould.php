@@ -68,12 +68,12 @@ class GenericParserShould extends TestCase
      * @return array
      */
     public function invalidURIData(){
-        return array(
-            array('abc://:123/path/data?key=value&key2=value2#fragid1'),
-            array('://salander.hack/path/data?key=value&key2=value2#fragid1'),
-            array('xxx:\local/path/data?key=value&key2=value2#fragid1'),
-            array('abc://millenium.se:ABC/path/data')
-        );
+        return [
+            ['abc://:123/path/data?key=value&key2=value2#fragid1'],
+            ['://salander.hack/path/data?key=value&key2=value2#fragid1'],
+            ['xxx:\local/path/data?key=value&key2=value2#fragid1'],
+            ['abc://millenium.se:ABC/path/data']
+        ];
     }
 
 }

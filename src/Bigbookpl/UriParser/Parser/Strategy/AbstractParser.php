@@ -23,7 +23,7 @@ abstract class AbstractParser implements Parser
 
     protected function parse(): array
     {
-        $matches = array();
+        $matches = [];
 
         if (!preg_match($this->getPattern(), $this->uri, $matches)) {
             throw new ParserException("Parsing error");

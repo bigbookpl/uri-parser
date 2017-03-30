@@ -57,6 +57,6 @@ class ParserSetShould extends TestCase
         $cut->addValidator(new URNValidator());
 
         //when
-        $validator = $cut->getSchemaValidator('unknown');
+        $cut->getSchemaValidator('unknown');
     }
 }
