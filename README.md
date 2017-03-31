@@ -1,6 +1,7 @@
 [![Build Status](https://travis-ci.org/bigbookpl/uri-parser.svg?branch=master)](https://travis-ci.org/bigbookpl/uri-parser)
 [![Code Climate](https://codeclimate.com/github/bigbookpl/uri-parser/badges/gpa.svg)](https://codeclimate.com/github/bigbookpl/uri-parser)
 [![Test Coverage](https://codeclimate.com/github/bigbookpl/uri-parser/badges/coverage.svg)](https://codeclimate.com/github/bigbookpl/uri-parser/coverage)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/53881ec3a7924dd78dbaa0d7536118a8)](https://www.codacy.com/app/bigbookpl/uri-parser?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=bigbookpl/uri-parser&amp;utm_campaign=Badge_Grade)
 
 # Bigbookpl/UriParser
 
