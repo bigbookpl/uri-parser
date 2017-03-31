@@ -29,9 +29,5 @@ abstract class AbstractValidator implements Validator
         throw new ValidationException("Invalid URI");
     }
 
-    public function xx(){
-
-    }
-
     protected abstract function getPattern(): string;
 }
